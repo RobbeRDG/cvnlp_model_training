@@ -2,7 +2,7 @@ import os
 from os.path import join
 import moviepy.editor as mp
 from tqdm import tqdm
-import config as config
+import util.local_config as local_config
 
 def extract_audio_for_videos_in_folder(video_folder_path, audio_folder_path):
     # Get all .mp4 files in the folder
@@ -33,16 +33,16 @@ def extract_audio_for_videos_in_folder(video_folder_path, audio_folder_path):
 
 if __name__ == '__main__':
     # Extract audio for videos in the test data folder
-    video_folder_path = join(config.TEST_DATA_FOLDER_PATH, 'video')
-    audio_folder_path = join(config.TEST_DATA_FOLDER_PATH, 'audio')
+    video_folder_path = join(local_config.TEST_DATA_FOLDER_PATH, 'video')
+    audio_folder_path = join(local_config.TEST_DATA_FOLDER_PATH, 'audio')
     extract_audio_for_videos_in_folder(video_folder_path, audio_folder_path)
 
     # Extract audio for videos in the dev data folder
-    video_folder_path = join(config.DEV_DATA_FOLDER_PATH, 'video')
-    audio_folder_path = join(config.DEV_DATA_FOLDER_PATH, 'audio')
+    video_folder_path = join(local_config.DEV_DATA_FOLDER_PATH, 'video')
+    audio_folder_path = join(local_config.DEV_DATA_FOLDER_PATH, 'audio')
     extract_audio_for_videos_in_folder(video_folder_path, audio_folder_path)
 
     # Extract audio for videos in the train data folder
-    video_folder_path = join(config.TRAIN_DATA_FOLDER_PATH, 'video')
-    audio_folder_path = join(config.TRAIN_DATA_FOLDER_PATH, 'audio')
+    video_folder_path = join(local_config.TRAIN_DATA_FOLDER_PATH, 'video')
+    audio_folder_path = join(local_config.TRAIN_DATA_FOLDER_PATH, 'audio')
     extract_audio_for_videos_in_folder(video_folder_path, audio_folder_path)
