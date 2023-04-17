@@ -6,7 +6,7 @@ import random
 
 # Add the global modules to the python path
 import sys
-sys.path.append('/workspaces/cvnlp_speech_sentiment_recognition/code_mount/modules')
+sys.path.append('/workspaces/cvnlp_speech_sentiment_recognition_data_exploration/code_mount/modules')
 
 # Set the random seeds
 seed = 0
@@ -18,4 +18,4 @@ random.seed(seed)
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Set the base path
-BASE_PATH = '/workspaces/cvnlp_speech_sentiment_recognition'
+BASE_PATH = '/workspaces/cvnlp_speech_sentiment_recognition_data_exploration'

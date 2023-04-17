@@ -7,3 +7,6 @@ moviepy
 torch
 wandb
 torchvision
+torchaudio
+audiomentations
+torch-audiomentations
