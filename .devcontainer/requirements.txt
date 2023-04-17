@@ -4,3 +4,6 @@ notebook
 ffmpeg-python
 ipympl
 moviepy
+torch
+wandb
+torchvision
