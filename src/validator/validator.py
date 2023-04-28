@@ -14,7 +14,7 @@ def validate_one_epoch(
 
     # No gradients needed during validation
     with torch.no_grad():
-        for idx, (inputs, labels, sample_metadata) in enumerate(tqdm(dataloader, leave=True)):
+        for idx, (inputs, waveforms, labels, sample_metadata) in enumerate(tqdm(dataloader, leave=True)):
             # Send the input and label to device
             inputs, labels = inputs.to(local_config.DEVICE, dtype=torch.float), labels.to(local_config.DEVICE)
 

@@ -1,7 +1,7 @@
+import util.local_config as local_config
 from helper_functions.model_helper_functions.model_setup_helper_functions import build_transform_module_lists_dict, get_loss_function, get_model, get_optimizer, get_train_and_validation_dataset_and_dataloader
 from trainer.trainer import train_one_epoch
-import util.local_config as local_config
-import config.global_config as global_config
+import global_utils.global_config as global_utils
 import wandb
 import datetime
 from os.path import join
@@ -15,20 +15,18 @@ def run():
     # Set the wandb config object
     config = {
         'epochs': 20,
-        'training_batch_size': 32,
+        'training_batch_size': 16,
         'learning_rate': 1e-3,
-        'sample_dimensions': (250, 500),
-        'model_id': 'resnet_18_untrained',
+        'model_id': 'hubert',
         'model_config_dict': {
-            'stored_weights': '',
-            'num_input_channels': 3,
-            'num_outputs': 0,
-            'dropout': 0.5
+            'dropout_probability': 0.5,
+            'pooling_strategy': 'mean',
+            'freeze_feature_extractor': True
         },
         'optimizer': 'adamw',
         'loss_fn': 'cross_entropy',
-        'labels_for_training_file_ids': ['train_'],
-        'labels_for_validation_file_ids': ['dev'],
+        'labels_for_training_file_ids': ['train'],
+        'labels_for_validation_file_ids': ['test'],
         'augmentation_config_dict': {
             'train_input_augmentation_ids': [],
             'train_target_augmentation_ids': [],
@@ -59,20 +57,14 @@ def run():
 
     # Construct the transform module lists as a dict
     transform_dict = build_transform_module_lists_dict(
-        augmentation_config_dict = config['augmentation_config_dict'],
-        sample_dimensions = config['sample_dimensions']
+        augmentation_config_dict = config['augmentation_config_dict']
     )
 
     # Get the datasets and dataloaders
     training_dataset, training_dataloader, validation_dataset, validation_dataloader = get_train_and_validation_dataset_and_dataloader(
         training_data_ids=config['labels_for_training_file_ids'],
         validation_data_ids=config['labels_for_validation_file_ids'],
-        labels_and_data_paths_dict=global_config.LABELS_AND_DATA_PATHS_DICT,
-        transform_dict=transform_dict,
         train_batch_size=config['training_batch_size'],
-        train_num_workers=global_config.TRAINING_NUM_WORKERS,
-        validation_batch_size=global_config.VALIDATION_BATCH_SIZE,
-        validation_num_workers=global_config.VALIDATION_NUM_WORKERS,
         project_base_path=local_config.BASE_PATH
     )
 
@@ -123,13 +115,7 @@ def run():
         )
 
         # Save the model
-        save_model_weights(
-            model=model,
-            model_checkpoint_path=run_checkpont_path,
-            save_as_artifact=True,
-            artifact_name=run_name,
-            model_validation_score=mean_val_loss_this_epoch
-        )
+        # TODO
 
         '''
         # Log this epoch

@@ -1,4 +1,5 @@
 from model_setups import baseline
+import util.local_config as local_config
 import wandb
 
 def train_model_setup(setup_id):
@@ -13,7 +14,7 @@ if __name__ == '__main__':
     setup_id = 'baseline'
 
     # Login in wandb
-    wandb.login()
+    #wandb.login()
 
     # Train the setup
     train_model_setup(setup_id=setup_id)

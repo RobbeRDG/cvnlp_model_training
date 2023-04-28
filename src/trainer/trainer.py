@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import util.local_config as local_config
 import torch
-from torch import autocast
+from torch import autocast # type: ignore
 import numpy as np
 
 def train_one_epoch(
@@ -14,7 +14,8 @@ def train_one_epoch(
     losses_this_epoch = np.array([])
     for idx, (inputs, labels, sample_metadata) in enumerate(tqdm(dataloader)):
         # Send the inputs and labels to device
-        inputs, labels = inputs.to(local_config.DEVICE, dtype=torch.float), labels.to(local_config.DEVICE)
+        inputs = inputs.to(local_config.DEVICE, dtype=torch.float)
+        labels = labels.to(local_config.DEVICE)
 
         # Zero the parameter gradients
         optimizer.zero_grad()
