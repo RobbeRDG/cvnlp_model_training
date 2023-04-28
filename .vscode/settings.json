@@ -1,7 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "/workspaces/cvnlp_speech_sentiment_recognition_model_training/code_mount/modules",
-        
+        "/workspaces/cvnlp_speech_sentiment_recognition_model_training/code_mount/modules",        
     ],
     "python.analysis.typeCheckingMode": "basic",
 }
