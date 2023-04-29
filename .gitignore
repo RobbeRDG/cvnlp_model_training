@@ -4,6 +4,8 @@
 /code_mount/*
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
+/wandb/*
+/model_checkpoints/*
 
 
 ####################################################################################

@@ -15,15 +15,15 @@ def run():
     # Set the wandb config object
     config = {
         'epochs': 10,
-        'training_batch_size': 16,
-        'learning_rate': 1e-4,
+        'training_batch_size': 32,
+        'learning_rate': 1e-5,
         'model_id': 'wav2vec2',
         'model_config_dict': {
-            'dropout_probability': 0.0,
+            'dropout_probability': 0.7,
             'pooling_strategy': 'mean',
-            'freeze_feature_extractor': False
+            'freeze_feature_extractor': True
         },
-        'class_weights_dict': None,
+        'class_weights_dict': global_config.EMOTION_WEIGHTS_DICT,
         'optimizer': 'adamw',
         'loss_fn': 'cross_entropy',
         'labels_for_training_file_ids': ['train'],
@@ -40,7 +40,7 @@ def run():
 
     # Set the run name
     now = datetime.datetime.now().strftime('%d_%m_%Y_%H_%M_%S')
-    run_name = f'baseline__{now}'
+    run_name = f'baseline_weighted__{now}'
 
     # Set the run checpoint path to store the models
     run_checkpont_path = join(local_config.BASELINE_CHECKPOINT_BASE_PATH, f'{run_name}.pth')

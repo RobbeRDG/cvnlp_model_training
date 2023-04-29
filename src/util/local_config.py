@@ -19,3 +19,6 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Set the base path
 BASE_PATH = '/workspaces/cvnlp_speech_sentiment_recognition_model_training'
+
+# Set the checkpoint base paths
+BASELINE_CHECKPOINT_BASE_PATH = join(BASE_PATH, 'model_checkpoints', 'baseline')
