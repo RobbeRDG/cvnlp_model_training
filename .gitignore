@@ -6,6 +6,7 @@
 .devcontainer/Dockerfile
 /wandb/*
 /model_checkpoints/*
+/validation_results/*
 
 
 ####################################################################################
