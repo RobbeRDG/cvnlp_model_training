@@ -59,9 +59,8 @@ def validate_one_epoch(
     results_df = pd.DataFrame({
         'dialogue_id': dialogue_ids_this_epoch,
         'utterance_id': utterance_ids_this_epoch,
-        'ground_truth': ground_truths_this_epoch,
         'model_prediction': model_predictions_this_epoch,
         'model_outputs': model_outputs_this_epoch
     })
 
-    return mean_epoch_loss, results_df
+    return mean_epoch_loss, results_df, ground_truths_this_epoch

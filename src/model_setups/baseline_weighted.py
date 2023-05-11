@@ -119,7 +119,7 @@ def train():
         model.eval()
         
         # Validate the model
-        mean_val_loss_this_epoch, val_results_df = validate_one_epoch(
+        mean_val_loss_this_epoch, val_results_df, ground_truths = validate_one_epoch(
             model,
             loss_fn,
             validation_dataloader
@@ -127,12 +127,12 @@ def train():
 
         # Calculate the evaluation metrics
         val_weighted_f1_score, val_accuracy, val_weighted_recall, confusion_matrix = calculate_all_evaluation_metrics(
-            ground_truths=val_results_df['ground_truth'],
+            ground_truths=ground_truths,
             model_predictions=val_results_df['model_prediction']
         )
 
         # Save the validation results
-        val_results_df.to_csv(join(run_validation_results_base_path, f'{epoch}_val_results.csv'), index=False)
+        val_results_df.to_csv(join(run_validation_results_base_path, f'{run_name}_val_results_{epoch}.csv'), index=False)
         
         # Save the model
         save_model_weights(
