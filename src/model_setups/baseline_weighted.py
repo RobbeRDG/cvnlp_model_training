@@ -17,7 +17,7 @@ import os
 def train():
     # Set the wandb config object
     config = {
-        'epochs': 30,
+        'epochs': 40,
         'training_batch_size': 32,
         'learning_rate': 1e-5,
         'model_id': 'wav2vec2',
